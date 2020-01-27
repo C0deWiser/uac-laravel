@@ -1,0 +1,29 @@
+{
+  "name": "codewiser/uac-laravel",
+  "description": "FC Zenit OAuth2.0 Client for Laravel",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "codewiser/uac": "*",
+    "ext-json": "*"
+  },
+  "authors": [
+    {
+      "name": "pm",
+      "email": "pm@101media.ru"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "Codewiser\\UAC\\Laravel\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Codewiser\\UAC\\Laravel\\ServiceProvider"
+      ]
+    }
+  }
+}
