@@ -1,6 +1,6 @@
 # Laravel UAC Package for any protected FC Zenit Service Application
 
-Пакет предоставляет разработчику `middleware` по имени `auth.oauth`, которым разработчик может закрыть все маршруты, где требуется авторизация пользователя.
+Пакет предоставляет разработчику `middleware` под названием `auth.oauth`, которым разработчик может закрыть все маршруты, где требуется авторизация пользователя.
 Авторизация пользователя происходит на OAuth сервере ФК Зенит.
 
 ## Состав
@@ -8,8 +8,6 @@
 Пакет содержит маршруты, их контроллеры и мидлварю.
 
 ## Настройка
-
-Обязательно:
 
 ```dotenv
 OAUTH_CLIENT_ID=        // ClientId
@@ -22,18 +20,27 @@ OAUTH_SCOPES=           // Your application default scopes
 С помощью предоставленного мидлваря можно закрыть один роут:
 
 ```php
-Route::get('/test', function(){})->middleware('auth.oauth');
+Route::get('/test')->middleware('auth.oauth');
 ```
 
 Можно закрыть группу роутов:
 ```php
 Route::group(['middleware' => ['auth.oauth']], function() {
-    Route::get('/test1', function(){});
-    Route::get('/test2', function(){});
+    Route::get('/test1');
+    Route::get('/test2');
 });
 ```
 
-А можно вообще добавить этот мидлварь в группу `web`, тогда весь будет закрыт от неавторизованного доступа. 
+А можно вообще добавить этот мидлварь в группу `web`, тогда весь сайт будет закрыт от неавторизованного доступа. 
+
+```php
+protected $middlewareGroups = [
+    'web' => [
+        // ...
+        \Codewiser\UAC\Laravel\AuthenticateWithOauth:class,
+    ],
+];
+```
 
 ## Роуты
 
