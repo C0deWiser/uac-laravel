@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/C0deWiser/uac.git",
-                "reference": "c76321decb165680c95f1160771e750583852694"
+                "reference": "ebf69367eda88a179cb5516cc28996ce1bff5ded"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/C0deWiser/uac/zipball/c76321decb165680c95f1160771e750583852694",
-                "reference": "c76321decb165680c95f1160771e750583852694",
+                "url": "https://api.github.com/repos/C0deWiser/uac/zipball/ebf69367eda88a179cb5516cc28996ce1bff5ded",
+                "reference": "ebf69367eda88a179cb5516cc28996ce1bff5ded",
                 "shasum": ""
             },
             "require": {
@@ -44,9 +44,14 @@
                 {
                     "name": "Александр Михайлов",
                     "email": "amikhailov@101media.ru"
+                },
+                {
+                    "name": "Вячеслав Трунов",
+                    "email": "tv@101media.ru"
                 }
             ],
-            "time": "2020-01-27T14:41:27+00:00"
+            "description": "FC Zenit OAuth2.0 Client",
+            "time": "2020-01-28T13:49:01+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

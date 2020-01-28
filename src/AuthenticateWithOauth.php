@@ -19,8 +19,8 @@ class AuthenticateWithOauth
         $uac = UacClient::Client();
 
         if (!($uac->hasAccessToken() && Auth::check())) {
-            $url = $uac->getAuthorizationUrl($request->url());
-            return redirect($url);
+            $uac->setReturnPath($request->url());
+            return redirect($uac->getAuthorizationUrl());
         }
 
         return $next($request);
