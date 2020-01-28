@@ -44,7 +44,7 @@ class UacClient extends \Codewiser\UAC\AbstractClient
      * @param User|ResourceOwnerInterface $user
      * @throws IdentityProviderException
      */
-    protected function authorizeResourceOwner($user)
+    public function authorizeResourceOwner($user)
     {
         $email = null;
 
@@ -77,8 +77,9 @@ class UacClient extends \Codewiser\UAC\AbstractClient
     /**
      * Deauthorize local user
      */
-    protected function deauthorizeResourceOwner()
+    public function deauthorizeResourceOwner()
     {
+        $this->unsetAccessToken();
         Auth::logout();
     }
 
