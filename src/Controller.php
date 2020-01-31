@@ -27,7 +27,11 @@ class Controller extends \Illuminate\Routing\Controller
         } catch (OauthResponseException $e) {
 
             if ($e->getMessage() == 'access_denied') {
+                $uac->log("Callback: user interrupts authorization process");
                 if (!$uac->closePopup()) {
+                    // Запомним в сессии, что была ошибка
+                    $uac->log("Callback: store error in session for middleware may catch it");
+                    $uac->context()->error = $e->getMessage();
                     return redirect($uac->getReturnPath('/'));
                 }
             }

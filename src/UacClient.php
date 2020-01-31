@@ -32,7 +32,7 @@ class UacClient extends \Codewiser\UAC\AbstractClient
             config('uac.client_id'),
             config('uac.client_secret'),
             config('uac.redirect_uri'),
-            new ContextManager()
+            new Context()
         );
 
         return new static($connector);
@@ -46,15 +46,7 @@ class UacClient extends \Codewiser\UAC\AbstractClient
      */
     protected function authorizeResourceOwner($user)
     {
-        $email = null;
-
-        if (@$user->login && filter_var($user->login, FILTER_VALIDATE_EMAIL)) {
-            $email = $user->login;
-        } elseif (is_string($user->email)) {
-            $email = $user->email;
-        } elseif (is_array($user->email)) {
-            $email = $user->email[0];
-        }
+        $email = filter_var($user->login, FILTER_VALIDATE_EMAIL) ?: $user->email[0];
 
         if (!$email) {
             throw new IdentityProviderException("Can not authorize user", 0, null);
@@ -71,7 +63,7 @@ class UacClient extends \Codewiser\UAC\AbstractClient
 
         Auth::login($local, true);
 
-        $this->log("Authorize user", $local->toArray());
+        $this->log("User", $local->toArray());
     }
 
     /**
@@ -92,7 +84,6 @@ class UacClient extends \Codewiser\UAC\AbstractClient
      */
     public function log($message, array $context = [])
     {
-        // TODO: Implement log() method.
         // Log::info($message, $context);
     }
 
@@ -105,4 +96,11 @@ class UacClient extends \Codewiser\UAC\AbstractClient
         return config('uac.default_scopes');
     }
 
+    /**
+     * @return \Codewiser\UAC\Laravel\Context
+     */
+    public function context()
+    {
+        return $this->context;
+    }
 }
