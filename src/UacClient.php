@@ -6,12 +6,14 @@ use Codewiser\UAC\Model\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Log;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 
 class UacClient extends \Codewiser\UAC\AbstractClient
 {
+    /** @var Context */
+    protected $context;
+
     /**
      * @return static
      */
@@ -52,8 +54,8 @@ class UacClient extends \Codewiser\UAC\AbstractClient
             throw new IdentityProviderException("Can not authorize user", 0, null);
         }
 
-        /** @var \App\User $local */
-        $local = \App\User::firstOrCreate(
+        /** @var \Illuminate\Foundation\Auth\User $local */
+        $local = \Illuminate\Foundation\Auth\User::firstOrCreate(
             ['email' => $email],
             [
                 'name' => $user->name ?: $email,
@@ -97,7 +99,7 @@ class UacClient extends \Codewiser\UAC\AbstractClient
     }
 
     /**
-     * @return \Codewiser\UAC\Laravel\Context
+     * @return Context
      */
     public function context()
     {

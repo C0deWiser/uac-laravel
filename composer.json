@@ -4,6 +4,7 @@
   "type": "library",
   "license": "MIT",
   "require": {
+    "laravel/framework": ">=5.8",
     "codewiser/uac": "*",
     "ext-json": "*"
   },
