@@ -55,7 +55,8 @@ class UacClient extends \Codewiser\UAC\AbstractClient
         }
 
         /** @var \Illuminate\Foundation\Auth\User $local */
-        $local = \Illuminate\Foundation\Auth\User::firstOrCreate(
+        $userModel = config('uac.user_model');
+        $local = $userModel::firstOrCreate(
             ['email' => $email],
             [
                 'name' => $user->name ?: $email,

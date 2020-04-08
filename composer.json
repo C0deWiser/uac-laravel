@@ -1,5 +1,6 @@
 {
   "name": "codewiser/uac-laravel",
+  "version": "v1.2",
   "description": "FC Zenit OAuth2.0 Client for Laravel",
   "type": "library",
   "license": "MIT",
