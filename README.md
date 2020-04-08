@@ -40,6 +40,8 @@ OAUTH_SCOPES=           // Your application default scopes
 USER_MODEL=\App\Models\User
 ```
 
+Пропишите `Codewiser\UAC\Laravel\ServiceProvider` в `config/app.php`.
+
 ## Переопределение
 
 Пакет пытается авторизовать локального пользователя по совпадению `email`;
